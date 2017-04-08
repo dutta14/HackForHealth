@@ -28,7 +28,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        FireBaseWrapper fireBaseWrapper= new FireBaseWrapper(this);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         forum = (FloatingActionButton) findViewById(R.id.fab1);
         chat = (FloatingActionButton) findViewById(R.id.fab2);

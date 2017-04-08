@@ -32,6 +32,7 @@
   
         <activity android:name=".Adapter" />
         <activity android:name=".ProfilePage"></activity>
+        <activity android:name=".ChatDisplay"></activity>
 
     </application>
 

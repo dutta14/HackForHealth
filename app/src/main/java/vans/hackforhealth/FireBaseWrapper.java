@@ -1,6 +1,7 @@
 package vans.hackforhealth;
 
 
+import android.content.Context;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,17 +19,19 @@ import static com.google.android.gms.internal.zzt.TAG;
 public class FireBaseWrapper {
 
     //static Firebase myFirebaseRef = new Firebase("https://hackforhealth-76f5a.firebaseio.com/");
-    FirebaseDatabase database;
-    DatabaseReference myRef;
+    static FirebaseDatabase database;
+    static DatabaseReference myRef;
 
-    String seedUrl="https://hackforhealth-76f5a.firebaseio.com";
-    String dbProfile="Profile";
-    String dbChat="Chat";
-    String dbForum="Forum";
+    static String seedUrl="https://hackforhealth-76f5a.firebaseio.com";
+    static String dbProfile="Profile";
+    static String dbChat="Chat";
+    static String dbForum="Forum";
+    Context context=null;
 
 
 
-    public FireBaseWrapper() {
+    public FireBaseWrapper(Context context) {
+        this.context=context;
         database = FirebaseDatabase.getInstance();
         myRef = database.getReferenceFromUrl("https://hackforhealth-76f5a.firebaseio.com/");
         chatListener();
@@ -45,7 +48,7 @@ public class FireBaseWrapper {
         database.getReference(dbProfile).push().setValue(val);
     }
 
-    public void sendChatToCloud(String val){
+    public static void sendChatToCloud(ChatMsg val){
         database.getReference(dbChat).push().setValue(val);
     }
 
@@ -68,6 +71,7 @@ public class FireBaseWrapper {
                // mTitleView.setText(post.title);
                // mBodyView.setText(post.body);
                 // [END_EXCLUDE]
+                ChatDisplay.getUpdate(context,post);
             }
 
             @Override
