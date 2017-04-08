@@ -50,7 +50,7 @@ public class Home extends AppCompatActivity {
         forum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getApplicationContext(), Forum.class));
             }
         });
         chat.setOnClickListener(new View.OnClickListener() {

@@ -34,8 +34,10 @@ public class ChatDisplay extends AppCompatActivity {
 
     public static void getUpdate(Context context,ChatMsg post){
         TextView tv = new TextView(context);
-        tv.setText(post.getBody());
-        mainList.addView(tv);
+        if(post != null) {
+            tv.setText(post.getBody());
+            mainList.addView(tv);
+        }
     }
 
 
