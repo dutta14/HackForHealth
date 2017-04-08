@@ -32,7 +32,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="vans.hackforhealth.Home" />
         </activity>
-        <activity android:name=".Adapter" />
+
         <activity android:name=".ProfilePage" />
         <activity android:name=".ChatDisplay" />
 
