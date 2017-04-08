@@ -43,4 +43,11 @@ public class UserThread {
     public void setBody(String body) {
         this.body = body;
     }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder(name);
+        builder.append(" "+tags);
+        builder.append(" "+body);
+        return builder.toString();
+    }
 }

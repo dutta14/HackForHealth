@@ -52,7 +52,7 @@ public class FireBaseWrapper {
         database.getReference(dbChat).push().setValue(val);
     }
 
-    public void sendForumToCloud(UserThread val){
+    public static void sendForumToCloud(UserThread val){
         database.getReference(dbForum).push().setValue(val);
     }
 
