@@ -19,9 +19,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".Forum"
+            android:label="@string/title_activity_forum"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vans.hackforhealth.Home" />
+        </activity>
+  
         <activity android:name=".Adapter" />
         <activity android:name=".ProfilePage"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ProfilePage"></activity>
     </application>
 
 </manifest>
