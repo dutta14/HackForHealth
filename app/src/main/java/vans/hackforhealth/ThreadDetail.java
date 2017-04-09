@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 public class ThreadDetail extends AppCompatActivity {
 
@@ -20,6 +21,12 @@ public class ThreadDetail extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         UserThread t = (UserThread) getIntent().getExtras().get("thread");
+
+        TextView title = (TextView) findViewById(R.id.title);
+        TextView message = (TextView) findViewById(R.id.message);
+
+        title.setText(t.getName());
+        message.setText(t.getBody());
 
     }
 

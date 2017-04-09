@@ -57,26 +57,7 @@ public class Home extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                if (dy > 0) {
-                    // Scroll Down
-                    if (fab.isShown()) {
-                        fab.hide();
-                    }
-                } else if (dy < 0) {
-                    // Scroll Up
-                    if (!fab.isShown()) {
-                        fab.show();
-                    }
-                }
-            }
-        });
-        _sGridLayoutManager = new StaggeredGridLayoutManager(2,
-                StaggeredGridLayoutManager.VERTICAL);
+        _sGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(_sGridLayoutManager);
         List<UserProfile> sList = FireBaseWrapper.serverUserProfile;
         Adapter rcAdapter = new Adapter(Home.this, sList);

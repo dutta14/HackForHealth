@@ -10,19 +10,29 @@ public class ChatMsg {
     String receiver;
     String data;
     long timestamp;
+    String key;
 
     public ChatMsg(){}
 
-    public ChatMsg(String sender, String reciver, String data, long timestamp) {
+    public ChatMsg(String sender, String receiver, String data, long timestamp) {
         this.sender = sender;
-        this.receiver = reciver;
+        this.receiver = receiver;
         this.data = data;
         this.timestamp = timestamp;
+        this.key = "";
     }
 
 
     public boolean isMine() {
         return true;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String toString() {

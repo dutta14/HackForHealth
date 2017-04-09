@@ -1,6 +1,5 @@
 package vans.hackforhealth;
 
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
@@ -44,7 +43,8 @@ public class FireBaseWrapper {
 
         if(serverUserThreads == null || serverUserThreads.size() <= 0)
             getData(context);
-        getDataChats(context);
+        if(serverChats == null || serverChats.size() <= 0)
+            getDataChats(context);
     }
 
     public void sendToCloud(String text){
@@ -72,7 +72,7 @@ public class FireBaseWrapper {
     public static List<UserThread> getData(Context context) {
         try {
 
-            final ProgressDialog progDailog = ProgressDialog.show(context,
+            final ProgressDialog progDialog = ProgressDialog.show(context,
                     "Loading Data...",
                     "Please wait....", true);
             new Thread() {
@@ -86,6 +86,8 @@ public class FireBaseWrapper {
                                 serverUserThreads=  new ArrayList<UserThread>();
                                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                                     UserThread post = postSnapshot.getValue(UserThread.class);
+                                    if(post.key.equals(""))
+                                        post.key = postSnapshot.getKey();
                                     Log.e("post",post.body);
                                     serverUserThreads.add(post);
                                 }
@@ -100,7 +102,7 @@ public class FireBaseWrapper {
                         sleep(5000);
                     } catch (Exception e) {
                     }
-                    progDailog.dismiss();
+                    progDialog.dismiss();
                 }
             }.start();
 
@@ -124,6 +126,8 @@ public class FireBaseWrapper {
                                 serverChats=  new ArrayList<ChatMsg>();
                                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                                     ChatMsg post = postSnapshot.getValue(ChatMsg.class);
+                                    if(post.key.equals(""))
+                                        post.key = postSnapshot.getKey();
                                     Log.e("post",post.toString());
                                     serverChats.add(post);
                                 }
@@ -131,7 +135,6 @@ public class FireBaseWrapper {
 
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
-
                                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
                             }
                         });

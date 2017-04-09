@@ -1,23 +1,18 @@
 package vans.hackforhealth;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.Date;
 
 public class ChatDisplay extends AppCompatActivity {
@@ -27,11 +22,9 @@ public class ChatDisplay extends AppCompatActivity {
     EditText etSend;
 
     private RecyclerView mRecyclerView;
-    private Button mButtonSend;
+    private ImageButton mButtonSend;
     private EditText mEditTextMessage;
     private ImageView mImageView;
-
-
     private ChatMessageAdapter mAdapter;
 
     @Override
@@ -40,7 +33,7 @@ public class ChatDisplay extends AppCompatActivity {
         setContentView(R.layout.activity_chat_display);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        mButtonSend = (Button) findViewById(R.id.btn_send);
+        mButtonSend = (ImageButton) findViewById(R.id.btn_send);
         mEditTextMessage = (EditText) findViewById(R.id.et_message);
         mImageView = (ImageView) findViewById(R.id.iv_image);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

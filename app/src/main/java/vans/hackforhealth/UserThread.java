@@ -12,6 +12,7 @@ public class UserThread implements Serializable {
     public String name;
     public ArrayList<String> tags;
     public String body;
+    public String key;
 
     public UserThread() {}
 
@@ -19,6 +20,7 @@ public class UserThread implements Serializable {
         this.name = name;
         this.tags = tags;
         this.body = body;
+        this.key = "";
     }
 
     public String getName() {
@@ -43,6 +45,14 @@ public class UserThread implements Serializable {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String toString() {
