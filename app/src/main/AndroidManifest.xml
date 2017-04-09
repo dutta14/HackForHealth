@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Adapter" />
-        <activity android:name=".ProfilePage"></activity>
+        <activity android:name=".ProfilePage"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

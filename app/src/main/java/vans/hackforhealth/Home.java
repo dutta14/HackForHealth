@@ -95,6 +95,7 @@ public class Home extends AppCompatActivity {
         listViewItems.add(new Profile("The Hunger Games", "Suzanne Collins"));
         listViewItems.add(new Profile("The Hitchhiker's Guide to the Galaxy", "Douglas Adams"));
         listViewItems.add(new Profile("The Theory Of Everything", "Dr Stephen Hawking"));
+        
 
         return listViewItems;
     }
