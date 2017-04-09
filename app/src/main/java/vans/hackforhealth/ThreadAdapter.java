@@ -34,16 +34,23 @@ public class ThreadAdapter extends RecyclerView.Adapter<ThreadAdapter.MyViewHold
         UserThread thread = threadList.get(position);
         holder.title.setText(thread.getName());
         ArrayList<String> tags = thread.getTags();
-        holder.tag1.setText(tags.get(0));
-        holder.tag2.setText(tags.get(1));
-        holder.tag3.setText(tags.get(2));
-        holder.tag4.setText(tags.get(3));
-        holder.tag5.setText(tags.get(4));
+        if(tags.size()>0)
+            holder.tag1.setText(tags.get(0));
+        if(tags.size()>1)
+            holder.tag2.setText(tags.get(1));
+        if(tags.size()>2)
+            holder.tag3.setText(tags.get(2));
+        if(tags.size()>3)
+            holder.tag4.setText(tags.get(3));
+        if(tags.size()>4)
+            holder.tag5.setText(tags.get(4));
     }
 
     @Override
     public int getItemCount() {
-        return threadList.size();
+        if(threadList!=null)
+            return threadList.size();
+        return 0;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

@@ -41,6 +41,8 @@ public class NewThread extends AppCompatActivity {
                 Log.e("anindya","sent");
                 CoordinatorLayout tlayout = (CoordinatorLayout) findViewById(R.id.tlayout);
                 Snackbar.make(tlayout, "Thread posted", Snackbar.LENGTH_SHORT).show();
+                Forum.threadList.add(uThread);
+                Forum.mAdapter.notifyDataSetChanged();
                 finish();
 
             }

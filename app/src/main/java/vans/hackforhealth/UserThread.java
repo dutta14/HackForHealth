@@ -8,9 +8,9 @@ import java.util.ArrayList;
  */
 
 public class UserThread {
-    private String name;
-    private ArrayList<String> tags;
-    private String body;
+    public String name;
+    public ArrayList<String> tags;
+    public String body;
 
     public UserThread() {}
 

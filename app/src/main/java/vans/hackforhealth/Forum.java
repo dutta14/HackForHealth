@@ -10,6 +10,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -17,9 +18,9 @@ import java.util.List;
 
 public class Forum extends AppCompatActivity {
 
-    private List<UserThread> threadList = new ArrayList<>();
+    public static List<UserThread> threadList;
     private RecyclerView recyclerView;
-    private ThreadAdapter mAdapter;
+    public static ThreadAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class Forum extends AppCompatActivity {
         setContentView(R.layout.activity_forum);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        threadList = new ArrayList<>();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -36,56 +39,20 @@ public class Forum extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
-        mAdapter = new ThreadAdapter(threadList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        threadList = FireBaseWrapper.serverUserThreads;
+        Log.e("anindya", "In forum: "+threadList);
+        mAdapter = new ThreadAdapter(threadList);
         recyclerView.setAdapter(mAdapter);
-
-        prepareData();
-    }
-
-    private void prepareData() {
-        ArrayList<String> tags = new ArrayList<>();
-        tags.add("Tag 1");
-        tags.add("Tag 2");
-        tags.add("Tag 3");
-        tags.add("Tag 4");
-        tags.add("Tag 5");
-        UserThread thread = new UserThread("Mad Max: Fury Road", tags, "");
-        threadList.add(thread);
-
-        thread = new UserThread("Inside Out", tags, "");
-        threadList.add(thread);
-
-        thread = new UserThread("Star Wars: Episode VII - The Force Awakens", tags, "");
-        threadList.add(thread);
-
-        thread = new UserThread("Shaun the Sheep", tags, "");
-        threadList.add(thread);
-
-        thread = new UserThread("The Martian", tags, "");
-        threadList.add(thread);
-
-        thread = new UserThread("Mission: Impossible Rogue Nation", tags, "");
-        threadList.add(thread);
-
-        thread = new UserThread("Up", tags, "");
-        threadList.add(thread);
-
-        thread = new UserThread("Star Trek", tags, "");
-        threadList.add(thread);
-
-        thread = new UserThread("The LEGO UserThread", tags, "");
-        threadList.add(thread);
-
-        thread = new UserThread("Iron Man", tags, "");
-        threadList.add(thread);
-
         mAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }

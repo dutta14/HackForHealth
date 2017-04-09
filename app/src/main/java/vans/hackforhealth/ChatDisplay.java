@@ -36,7 +36,8 @@ public class ChatDisplay extends AppCompatActivity {
         TextView tv = new TextView(context);
         if(post != null) {
             tv.setText(post.getBody());
-            mainList.addView(tv);
+            if(mainList != null)
+               mainList.addView(tv);
         }
     }
 

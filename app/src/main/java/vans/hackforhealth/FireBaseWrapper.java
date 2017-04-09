@@ -41,6 +41,7 @@ public class FireBaseWrapper {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReferenceFromUrl("https://hackforhealth-76f5a.firebaseio.com/");
         chatListener();
+        getData(context);
     }
 
     public void sendToCloud(String text){
@@ -73,9 +74,9 @@ public class FireBaseWrapper {
                 // Get Post object and use the values to update the UI
                 ChatMsg post = dataSnapshot.getValue(ChatMsg.class);
                 // [START_EXCLUDE]
-               // mAuthorView.setText(post.author);
-               // mTitleView.setText(post.title);
-               // mBodyView.setText(post.body);
+                // mAuthorView.setText(post.author);
+                // mTitleView.setText(post.title);
+                // mBodyView.setText(post.body);
                 // [END_EXCLUDE]
                 ChatDisplay.getUpdate(context,post);
             }
@@ -91,8 +92,7 @@ public class FireBaseWrapper {
         database.getReference(dbChat).addValueEventListener(postListener);
     }
 
-    public static List<UserThread> getData(Context context, final String child)
-    {
+    public static List<UserThread> getData(Context context) {
         try {
 
             final ProgressDialog progDailog = ProgressDialog.show(context,
@@ -102,18 +102,15 @@ public class FireBaseWrapper {
                 public void run() {
                     try {
 
-                        // sleep the thread, whatever time you want.
                         database.getReference(dbForum).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot snapshot) {
                                 System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
-                                serverUserThreads=  new ArrayList<UserThread>();;
-                                int i=0;
+                                serverUserThreads=  new ArrayList<UserThread>();
                                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                                     UserThread post = postSnapshot.getValue(UserThread.class);
+                                    Log.e("post",post.body);
                                     serverUserThreads.add(post);
-                                    //System.out.println(post.getTimestamp().toString() + " - " + post.getState());
-
                                 }
                             }
 
@@ -121,8 +118,6 @@ public class FireBaseWrapper {
                             public void onCancelled(DatabaseError databaseError) {
                                 // Getting Post failed, log a message
                                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                                // [START_EXCLUDE]
-                                // [END_EXCLUDE]
                             }
                         });
                         sleep(5000);
@@ -134,11 +129,7 @@ public class FireBaseWrapper {
 
         } catch (Exception e) {
             Log.e("Error", "");
-
         }
-
         return serverUserThreads;
     }
-
-
 }
