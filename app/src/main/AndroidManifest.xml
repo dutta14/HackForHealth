@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="vans.hackforhealth">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Forum"
             android:label="@string/title_activity_forum"
@@ -29,11 +32,35 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="vans.hackforhealth.Home" />
         </activity>
-  
+
         <activity android:name=".Adapter" />
         <activity android:name=".ProfilePage"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ProfilePage"></activity>
+
+
+        <activity android:name=".ProfilePage" />
+        <activity android:name=".ChatDisplay" />
+
+        <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".NewThread"
+            android:label="@string/title_activity_new_thread"
+            android:parentActivityName=".Forum"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vans.hackforhealth.Forum" />
+        </activity>
     </application>
 
 </manifest>

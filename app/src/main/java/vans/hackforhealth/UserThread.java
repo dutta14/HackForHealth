@@ -8,9 +8,9 @@ import java.util.ArrayList;
  */
 
 public class UserThread {
-    private String name;
-    private ArrayList<String> tags;
-    private String body;
+    public String name;
+    public ArrayList<String> tags;
+    public String body;
 
     public UserThread() {}
 
@@ -42,5 +42,12 @@ public class UserThread {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder(name);
+        builder.append(" "+tags);
+        builder.append(" "+body);
+        return builder.toString();
     }
 }

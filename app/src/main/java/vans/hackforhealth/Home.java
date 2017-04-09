@@ -15,6 +15,9 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +26,14 @@ public class Home extends AppCompatActivity {
     private FloatingActionButton fab, forum, chat;
     private Animation fab_open, fab_close, rotate_forward, rotate_backward;
     private StaggeredGridLayoutManager _sGridLayoutManager;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        FireBaseWrapper fireBaseWrapper= new FireBaseWrapper(this);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         forum = (FloatingActionButton) findViewById(R.id.fab1);
         chat = (FloatingActionButton) findViewById(R.id.fab2);
@@ -45,7 +50,7 @@ public class Home extends AppCompatActivity {
         forum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getApplicationContext(), Forum.class));
             }
         });
         chat.setOnClickListener(new View.OnClickListener() {
