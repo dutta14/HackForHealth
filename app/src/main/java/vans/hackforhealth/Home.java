@@ -56,7 +56,8 @@ public class Home extends AppCompatActivity {
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(Home.this,ChatDisplay.class);
+                startActivity(i);
             }
         });
 
@@ -83,13 +84,10 @@ public class Home extends AppCompatActivity {
         _sGridLayoutManager = new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(_sGridLayoutManager);
-
         List<Profile> sList = getListItemData();
-
         Adapter rcAdapter = new Adapter(
                 Home.this, sList);
         recyclerView.setAdapter(rcAdapter);
-
     }
 
     private List<Profile> getListItemData() {
@@ -101,31 +99,24 @@ public class Home extends AppCompatActivity {
         listViewItems.add(new Profile("The Hunger Games", "Suzanne Collins"));
         listViewItems.add(new Profile("The Hitchhiker's Guide to the Galaxy", "Douglas Adams"));
         listViewItems.add(new Profile("The Theory Of Everything", "Dr Stephen Hawking"));
-        
-
         return listViewItems;
     }
 
     public void animateFAB() {
-
         if (isFabOpen) {
-
             fab.startAnimation(rotate_backward);
             forum.startAnimation(fab_close);
             chat.startAnimation(fab_close);
             forum.setClickable(false);
             chat.setClickable(false);
             isFabOpen = false;
-
         } else {
-
             fab.startAnimation(rotate_forward);
             forum.startAnimation(fab_open);
             chat.startAnimation(fab_open);
             forum.setClickable(true);
             chat.setClickable(true);
             isFabOpen = true;
-
         }
     }
 }

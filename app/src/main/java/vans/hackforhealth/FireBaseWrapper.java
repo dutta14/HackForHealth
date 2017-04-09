@@ -33,16 +33,17 @@ public class FireBaseWrapper {
     Context context=null;
 
     static ArrayList<UserThread> serverUserThreads;
-
+    static ArrayList<ChatMsg> serverChats;
 
 
     public FireBaseWrapper(Context context) {
         this.context=context;
         database = FirebaseDatabase.getInstance();
         myRef = database.getReferenceFromUrl("https://hackforhealth-76f5a.firebaseio.com/");
-        chatListener();
+
         if(serverUserThreads == null || serverUserThreads.size() <= 0)
             getData(context);
+        getDataChats(context);
     }
 
     public void sendToCloud(String text){
@@ -68,30 +69,7 @@ public class FireBaseWrapper {
         database.getReference(dbProfile).push().setValue(val);
     }
 
-    public void chatListener(){
-        ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-                ChatMsg post = dataSnapshot.getValue(ChatMsg.class);
-                // [START_EXCLUDE]
-                // mAuthorView.setText(post.author);
-                // mTitleView.setText(post.title);
-                // mBodyView.setText(post.body);
-                // [END_EXCLUDE]
-                ChatDisplay.getUpdate(context,post);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                // [START_EXCLUDE]
-                // [END_EXCLUDE]
-            }
-        };
-        database.getReference(dbChat).addValueEventListener(postListener);
-    }
 
     public static List<UserThread> getData(Context context) {
         try {
@@ -133,4 +111,41 @@ public class FireBaseWrapper {
         }
         return serverUserThreads;
     }
+
+    public static List<ChatMsg> getDataChats(Context context) {
+        try {
+            final ProgressDialog progDialog = ProgressDialog.show(context, "Loading Data...", "Please wait....", true);
+            new Thread() {
+                public void run() {
+                    try {
+                        // sleep the thread, whatever time you want.
+                        database.getReference(dbChat).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot snapshot) {
+                                System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
+                                serverChats=  new ArrayList<ChatMsg>();
+                                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                    ChatMsg post = postSnapshot.getValue(ChatMsg.class);
+                                    Log.e("post",post.toString());
+                                    serverChats.add(post);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                            }
+                        });
+                        sleep(5000);
+                    } catch (Exception e) {
+                    }
+                    progDialog.dismiss();
+                }
+            }.start();
+        } catch (Exception e) {
+            Log.e("Error", "");
+        }
+        return serverChats;
+    }
+
 }

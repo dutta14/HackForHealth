@@ -6,44 +6,55 @@ package vans.hackforhealth;
 
 public class ChatMsg {
 
-    String Sender;
-    String Reciver;
-    String Body;
+    String sender;
+    String receiver;
+    String data;
     long timestamp;
 
-    public ChatMsg(){
+    public ChatMsg(){}
 
-    }
-
-    public ChatMsg(String sender, String reciver, String body, long timestamp) {
-        Sender = sender;
-        Reciver = reciver;
-        Body = body;
+    public ChatMsg(String sender, String reciver, String data, long timestamp) {
+        this.sender = sender;
+        this.receiver = reciver;
+        this.data = data;
         this.timestamp = timestamp;
     }
 
+
+    public boolean isMine() {
+        return true;
+    }
+
+    public String toString() {
+        StringBuilder b = new StringBuilder();
+        b.append(sender==null?"null ":sender+" ");
+        b.append(receiver ==null?"null ": receiver +" ");
+        b.append(data==null?"null ":data+" ");
+        return b.toString();
+    }
+
     public String getSender() {
-        return Sender;
+        return sender;
     }
 
     public void setSender(String sender) {
-        Sender = sender;
+        this.sender = sender;
     }
 
-    public String getReciver() {
-        return Reciver;
+    public String getReceiver() {
+        return receiver;
     }
 
-    public void setReciver(String reciver) {
-        Reciver = reciver;
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
     }
 
-    public String getBody() {
-        return Body;
+    public String getData() {
+        return data;
     }
 
-    public void setBody(String body) {
-        Body = body;
+    public void setData(String data) {
+        this.data = data;
     }
 
     public long getTimestamp() {
