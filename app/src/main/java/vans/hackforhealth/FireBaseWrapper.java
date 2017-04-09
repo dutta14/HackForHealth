@@ -50,7 +50,6 @@ public class FireBaseWrapper {
     public void sendToCloud(String text){
         myRef.setValue(text);
 
-        //myRef=myRef.push();
         Log.e("Hello",myRef.getKey());
     }
 
@@ -58,9 +57,9 @@ public class FireBaseWrapper {
         database.getReference(dbProfile).push().setValue(val);
     }
 
-  /*  public static void sendChatToCloud(ChatMsg val){
+    public static void sendChatToCloud(ChatMsg val){
         database.getReference(dbChat).push().setValue(val);
-    }*/
+    }
 
     public static void sendForumToCloud(UserThread val){
         database.getReference(dbForum).push().setValue(val);
