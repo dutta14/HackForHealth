@@ -10,5 +10,5 @@
     <color name="fontdarkgrey">#333333</color>
     <color name="fontgrey">#4D4D4D</color>
     <color name="grey">#A6A6A6</color>
-
+    <color name="white">#FFFFFF</color>
 </resources>

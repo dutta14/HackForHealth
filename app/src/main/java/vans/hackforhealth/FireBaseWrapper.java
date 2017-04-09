@@ -34,6 +34,7 @@ public class FireBaseWrapper {
 
     static ArrayList<UserThread> serverUserThreads;
     static ArrayList<ChatMsg> serverChats;
+    static ArrayList<UserProfile> serverUserProfile;
 
 
     public FireBaseWrapper(Context context) {
@@ -53,13 +54,13 @@ public class FireBaseWrapper {
         Log.e("Hello",myRef.getKey());
     }
 
-    public void sendUserDataToCloud(String val){
+    public void sendUserDataToCloud(UserProfile val){
         database.getReference(dbProfile).push().setValue(val);
     }
 
-    public static void sendChatToCloud(ChatMsg val){
+  /*  public static void sendChatToCloud(ChatMsg val){
         database.getReference(dbChat).push().setValue(val);
-    }
+    }*/
 
     public static void sendForumToCloud(UserThread val){
         database.getReference(dbForum).push().setValue(val);
@@ -68,8 +69,6 @@ public class FireBaseWrapper {
     public void sendCommentToCloud(String val){
         database.getReference(dbProfile).push().setValue(val);
     }
-
-
 
     public static List<UserThread> getData(Context context) {
         try {
@@ -133,6 +132,7 @@ public class FireBaseWrapper {
 
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
+
                                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
                             }
                         });
