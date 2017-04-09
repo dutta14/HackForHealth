@@ -148,4 +148,40 @@ public class FireBaseWrapper {
         return serverChats;
     }
 
+    public static List<UserProfile> getUserProfile(Context context) {
+        try {
+            final ProgressDialog progDialog = ProgressDialog.show(context, "Loading Data...", "Please wait....", true);
+            new Thread() {
+                public void run() {
+                    try {
+                        // sleep the thread, whatever time you want.
+                        database.getReference(dbProfile).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot snapshot) {
+                                System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
+                                serverUserProfile=  new ArrayList<UserProfile>();
+                                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                    UserProfile post = postSnapshot.getValue(UserProfile.class);
+                                    Log.e("post",post.toString());
+                                    serverUserProfile.add(post);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                            }
+                        });
+                        sleep(5000);
+                    } catch (Exception e) {
+                    }
+                    progDialog.dismiss();
+                }
+            }.start();
+        } catch (Exception e) {
+            Log.e("Error", "");
+        }
+        return serverUserProfile;
+    }
+
 }
