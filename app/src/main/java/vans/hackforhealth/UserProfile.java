@@ -1,6 +1,7 @@
 package vans.hackforhealth;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by sarthak on 4/9/17.
@@ -15,6 +16,20 @@ public class UserProfile {
     String bio;
     ArrayList<String> interests;
     String disorder;
+
+    public UserProfile(String name, String email, String pass, String dob, char gender, String bio, String interests, String disorder) {
+        this.name = name;
+        this.email = email;
+        this.pass = pass;
+        this.dob = dob;
+        this.gender = gender;
+        this.bio = bio;
+        this.interests = new ArrayList<String>(Arrays.asList(interests.split(",")));
+
+        this.disorder = disorder;
+
+        System.out.print("Constructor");
+    }
 
     public String getName() {
         return name;

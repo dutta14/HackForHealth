@@ -33,7 +33,9 @@ public class ViewHolder extends RecyclerView.ViewHolder implements
     {
         switch (view.getId()) {
             case R.id.BookName:
-                view.getContext().startActivity(new Intent(view.getContext(),ProfilePage.class));
+                Intent profile = new Intent(view.getContext(),ProfilePage.class);
+                profile.putExtra("position", getPosition());
+                view.getContext().startActivity(profile);
                 break;
             case R.id.image1:
                 Log.d("hey","image");

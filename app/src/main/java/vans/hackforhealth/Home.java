@@ -3,19 +3,13 @@ package vans.hackforhealth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
@@ -84,23 +78,11 @@ public class Home extends AppCompatActivity {
         _sGridLayoutManager = new StaggeredGridLayoutManager(2,
                 StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(_sGridLayoutManager);
-        List<Profile> sList = getListItemData();
-        Adapter rcAdapter = new Adapter(
-                Home.this, sList);
+        List<UserProfile> sList = FireBaseWrapper.serverUserProfile;
+        Adapter rcAdapter = new Adapter(Home.this, sList);
         recyclerView.setAdapter(rcAdapter);
     }
 
-    private List<Profile> getListItemData() {
-        List<Profile> listViewItems = new ArrayList<Profile>();
-        listViewItems.add(new Profile("1984", "George Orwell"));
-        listViewItems.add(new Profile("Pride and Prejudice", "Jane Austen"));
-        listViewItems.add(new Profile("One Hundred Years of Solitude", "Gabriel Garcia Marquez"));
-        listViewItems.add(new Profile("The Book Thief", "Markus Zusak"));
-        listViewItems.add(new Profile("The Hunger Games", "Suzanne Collins"));
-        listViewItems.add(new Profile("The Hitchhiker's Guide to the Galaxy", "Douglas Adams"));
-        listViewItems.add(new Profile("The Theory Of Everything", "Dr Stephen Hawking"));
-        return listViewItems;
-    }
 
     public void animateFAB() {
         if (isFabOpen) {

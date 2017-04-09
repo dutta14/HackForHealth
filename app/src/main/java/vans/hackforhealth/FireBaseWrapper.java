@@ -53,7 +53,7 @@ public class FireBaseWrapper {
         Log.e("Hello",myRef.getKey());
     }
 
-    public void sendUserDataToCloud(UserProfile val){
+    public static void sendUserDataToCloud(UserProfile val){
         database.getReference(dbProfile).push().setValue(val);
     }
 

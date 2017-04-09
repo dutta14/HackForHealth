@@ -40,12 +40,24 @@ public class RegisterActivity extends AppCompatActivity {
                                 ((EditText)findViewById(R.id.signup_input_age)).getText().toString().isEmpty() ||
                                     ((EditText)findViewById(R.id.signup_bio)).getText().toString().isEmpty() ||
                                         ((EditText)findViewById(R.id.signup_tags)).getText().toString().isEmpty()){
-                    Snackbar.make(findViewById(R.id.registerView), "Kindly fill all the fields.", Snackbar.LENGTH_LONG)
-                            .show(); // Don’t forget to show!
-
                     Toast.makeText(getApplicationContext(),"Kindly fill all the fields.",Toast.LENGTH_LONG).show();
-                }else
-                startActivity(new Intent(getApplicationContext(), Home.class));
+                }else {
+                    String name = ((EditText)findViewById(R.id.signup_input_name)).getText().toString();
+                    String email = ((EditText)findViewById(R.id.signup_input_email)).getText().toString();
+                    String password = ((EditText)findViewById(R.id.signup_input_password)).getText().toString();
+                    String dob = ((EditText)findViewById(R.id.signup_input_age)).getText().toString();
+                    String bio = ((EditText)findViewById(R.id.signup_bio)).getText().toString();
+                    String tags = ((EditText)findViewById(R.id.signup_tags)).getText().toString();
+                    String disorder = ((EditText)findViewById(R.id.signup_disorder)).getText().toString();
+
+
+                    UserProfile user = new UserProfile(name,email,password,dob,'F',bio,tags,disorder);
+                    Log.d("print-before", "user");
+                    FireBaseWrapper.sendUserDataToCloud(user);
+                    Log.d("print", "user");
+
+                    startActivity(new Intent(getApplicationContext(), Home.class));
+                }
             }
         });
 

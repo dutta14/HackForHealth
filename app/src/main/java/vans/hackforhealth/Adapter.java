@@ -10,10 +10,10 @@ import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<ViewHolder>
 {
-    private List<Profile> itemList;
+    private List<UserProfile> itemList;
     private Context context;
 
-    public Adapter(Context context,List<Profile> itemList)
+    public Adapter(Context context,List<UserProfile> itemList)
     {
         this.itemList = itemList;
         this.context = context;
