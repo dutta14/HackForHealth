@@ -22,7 +22,7 @@
         app:backgroundTint="@color/colorFAB2"
         app:elevation="6dp"
         app:pressedTranslationZ="12dp"
-        android:src="@drawable/ic_done" />
+        android:src="@drawable/chat" />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab1"
         android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
         app:elevation="6dp"
         app:backgroundTint="@color/colorFAB1"
         app:pressedTranslationZ="12dp"
-        android:src="@drawable/ic_message" />
+        android:src="@drawable/forum" />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
