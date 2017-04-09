@@ -32,7 +32,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="vans.hackforhealth.Home" />
         </activity>
-
         <activity android:name=".ProfilePage" />
         <activity android:name=".ChatDisplay" />
 
@@ -50,6 +49,15 @@
         <activity
             android:name=".NewThread"
             android:label="@string/title_activity_new_thread"
+            android:parentActivityName=".Forum"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="vans.hackforhealth.Forum" />
+        </activity>
+        <activity
+            android:name=".ThreadDetail"
+            android:label="@string/title_activity_thread_detail"
             android:parentActivityName=".Forum"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

@@ -41,7 +41,8 @@ public class FireBaseWrapper {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReferenceFromUrl("https://hackforhealth-76f5a.firebaseio.com/");
         chatListener();
-        getData(context);
+        if(serverUserThreads == null || serverUserThreads.size() <= 0)
+            getData(context);
     }
 
     public void sendToCloud(String text){

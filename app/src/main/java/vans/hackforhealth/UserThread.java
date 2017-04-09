@@ -1,5 +1,6 @@
 package vans.hackforhealth;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  * For a new user thread view on the recycler view.
  */
 
-public class UserThread {
+public class UserThread implements Serializable {
     public String name;
     public ArrayList<String> tags;
     public String body;
